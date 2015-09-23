@@ -7,6 +7,6 @@ namespace AnimalShelter
 {
     public interface IPriceable
     {
-        int Price { get; set; }
+        int Price { get; }
     }
 }

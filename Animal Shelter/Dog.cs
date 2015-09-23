@@ -9,6 +9,7 @@ namespace AnimalShelter
     {
         // Backing field for property, see actual properties for their description.
         private SimpleDate lastWalkDate;
+        private int price;
 
         /// <summary>
         /// The date of the last walk of the dog. Contains null if unknown.
@@ -38,12 +39,12 @@ namespace AnimalShelter
             int chipRegNumber = Convert.ToInt32(chipRegistrationNumber);
             if (chipRegNumber < 50000)
             {
-                Price = 200;
+                price = 200;
             }
             else
             {
-                Price = 350;
-            }
+                price = 350;
+            }         
             
         }
 
@@ -68,6 +69,14 @@ namespace AnimalShelter
                 return base.ToString() + ", lastWalkDate: " + "00-00-0000";
             }
             return base.ToString() + ", lastWalkDate: " + LastWalkDate.ToString();
+        }
+
+        public override int Price
+        {
+            get
+            {
+                return price;
+            }
         }
     }
 }

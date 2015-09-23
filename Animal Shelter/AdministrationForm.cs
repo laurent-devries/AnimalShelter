@@ -100,46 +100,57 @@ namespace AnimalShelter
 
         private void btnDeleteAnimal_Click(object sender, EventArgs e)
         {
-            Animal animal = (Animal)lbSellAnimal.SelectedItem;
-            foreach (Animal a in administration.Animallist)
+            Animal animal = lbSellAnimal.SelectedItem as Animal;
+            if (animal != null)
             {
-                if (a.ChipRegistrationNumber == animal.ChipRegistrationNumber)
+                foreach (Animal a in administration.Animallist)
                 {
-                    bool removeControle = administration.RemoveAnimal(a.ChipRegistrationNumber);
-                    if (removeControle)
+                    if (a.ChipRegistrationNumber == animal.ChipRegistrationNumber)
                     {
-                        MessageBox.Show("Animal has been removed");
-                        reloadLists();
-                        lblAnimalPrice.Text = "Price: ";
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong");
+                        bool removeControle = administration.RemoveAnimal(a.ChipRegistrationNumber);
+                        if (removeControle)
+                        {
+                            MessageBox.Show("Animal has been removed");
+                            reloadLists();
+                            lblAnimalPrice.Text = "Price: ";
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Something went wrong");
+                        }
                     }
                 }
-            }
-            
+            }                
         }
 
         private void btnReserve_Click(object sender, EventArgs e)
         {
             Animal animal = lbNotReservedAnimals.SelectedItem as Animal;
-            animal.IsReserved = true;
-            reloadLists();
+            if (animal != null)
+            {
+                animal.IsReserved = true;
+                reloadLists();
+            }            
         }
 
         private void btnFree_Click(object sender, EventArgs e)
         {
             Animal animal = lbReservedAnimals.SelectedItem as Animal;
-            animal.IsReserved = false;
-            reloadLists();
+            if (animal != null)
+            {
+                animal.IsReserved = false;
+                reloadLists();
+            }            
         }
 
         private void lbSellAnimal_SelectedIndexChanged(object sender, EventArgs e)
         {
             Animal animal = lbSellAnimal.SelectedItem as Animal;
-            lblAnimalPrice.Text = "Price: $" + animal.Price.ToString();
+            if (animal != null)
+            {
+                lblAnimalPrice.Text = "Price: $" + animal.Price.ToString();
+            }
         }
 
         public void loadPremades()
@@ -153,8 +164,8 @@ namespace AnimalShelter
             //Dogs
             administration.Add(new Dog("00001", premadeBirth1, "Piet", premadeLWD1));
             administration.Add(new Dog("00002", premadeBirth2, "Jan", premadeLWD1));
-            administration.Add(new Dog("00003", premadeBirth1, "Bert", premadeLWD2));
-            administration.Add(new Dog("00004", premadeBirth2, "Kees", premadeLWD2));
+            administration.Add(new Dog("50003", premadeBirth1, "Bert", premadeLWD2));
+            administration.Add(new Dog("50004", premadeBirth2, "Kees", premadeLWD2));
 
             //Cats
             administration.Add(new Cat("00005", premadeBirth1, "Maarten", "Hates children"));

@@ -9,7 +9,7 @@ namespace AnimalShelter
     {
         // Backing field for property, see actual properties for their description.
         private string badHabits;
-
+        private int price;
         /// <summary>
         /// Description of the bad habits that the cat shows (e.g. "Scratches the couch").
         /// or null if the cat shows no bad habits.
@@ -36,12 +36,13 @@ namespace AnimalShelter
             string name, string badHabits) : base(chipRegistrationNumber, dateOfBirth, name)
         {
             BadHabits = badHabits;
-            Price = 60 - BadHabits.Length;
-            if (Price < 20)
+            price = 60 - BadHabits.Length;
+            if (price < 20)
             {
-                Price = 20;
+                price = 20;
             }
         }
+
 
         /// <summary>
         /// Retrieve information about this cat
@@ -57,6 +58,7 @@ namespace AnimalShelter
         ///                 IsReserved will be "reserved" if reserved or "not reserved" otherwise.
         ///                 BadHabits will be "none" if none present or a description of the actual habits otherwise.
         /// </returns>
+        /// 
         public override string ToString()
         {
             if (BadHabits == null)
@@ -65,5 +67,14 @@ namespace AnimalShelter
             }
             return base.ToString() + ", badhabits: " + BadHabits.ToString();
         }
+
+        public override int Price
+        {
+            get
+            {
+                return price;
+            }
+        }
+        
     }
 }

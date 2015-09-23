@@ -56,12 +56,8 @@ namespace AnimalShelter
             get { return isReserved; }
             set { isReserved = value; }
         }
-        
-        public int Price
-        {
-            get { return price; }
-            set { price = value; }
-        }
+
+        public abstract int Price { get; }
 
         /// <summary>
         /// Creates an animal.
