@@ -107,7 +107,7 @@ namespace AnimalShelter
         {
             string dateOfBirthString;
             if (dateOfBirth == null)
-            {
+            { 
                 dateOfBirthString = "00-00-0000";
             }
             else
