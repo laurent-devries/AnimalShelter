@@ -21,7 +21,6 @@ namespace AnimalShelter
         private SimpleDate dateOfBirth;
         private string name;
         private bool isReserved;
-        private int price;
 
         /// <summary>
         /// A five digit number containing the registration number of the animal.
