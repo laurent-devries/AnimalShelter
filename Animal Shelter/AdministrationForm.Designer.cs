@@ -42,6 +42,7 @@
             this.tbBadHabits = new System.Windows.Forms.TextBox();
             this.gbAddAnimal = new System.Windows.Forms.GroupBox();
             this.gbSellAnimal = new System.Windows.Forms.GroupBox();
+            this.lblAnimalPrice = new System.Windows.Forms.Label();
             this.btnSellAnimal = new System.Windows.Forms.Button();
             this.lbSellAnimal = new System.Windows.Forms.ListBox();
             this.gbReserveAnimal = new System.Windows.Forms.GroupBox();
@@ -51,7 +52,6 @@
             this.lbReservedAnimals = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblAnimalPrice = new System.Windows.Forms.Label();
             this.gbAddAnimal.SuspendLayout();
             this.gbSellAnimal.SuspendLayout();
             this.gbReserveAnimal.SuspendLayout();
@@ -189,10 +189,19 @@
             this.gbSellAnimal.Controls.Add(this.lbSellAnimal);
             this.gbSellAnimal.Location = new System.Drawing.Point(307, 12);
             this.gbSellAnimal.Name = "gbSellAnimal";
-            this.gbSellAnimal.Size = new System.Drawing.Size(216, 202);
+            this.gbSellAnimal.Size = new System.Drawing.Size(452, 202);
             this.gbSellAnimal.TabIndex = 18;
             this.gbSellAnimal.TabStop = false;
             this.gbSellAnimal.Text = "Sell Animal";
+            // 
+            // lblAnimalPrice
+            // 
+            this.lblAnimalPrice.AutoSize = true;
+            this.lblAnimalPrice.Location = new System.Drawing.Point(6, 173);
+            this.lblAnimalPrice.Name = "lblAnimalPrice";
+            this.lblAnimalPrice.Size = new System.Drawing.Size(34, 13);
+            this.lblAnimalPrice.TabIndex = 16;
+            this.lblAnimalPrice.Text = "Price:";
             // 
             // btnSellAnimal
             // 
@@ -209,7 +218,7 @@
             this.lbSellAnimal.FormattingEnabled = true;
             this.lbSellAnimal.Location = new System.Drawing.Point(6, 28);
             this.lbSellAnimal.Name = "lbSellAnimal";
-            this.lbSellAnimal.Size = new System.Drawing.Size(200, 134);
+            this.lbSellAnimal.Size = new System.Drawing.Size(440, 134);
             this.lbSellAnimal.TabIndex = 2;
             this.lbSellAnimal.SelectedIndexChanged += new System.EventHandler(this.lbSellAnimal_SelectedIndexChanged);
             // 
@@ -282,20 +291,11 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Reserved";
             // 
-            // lblAnimalPrice
-            // 
-            this.lblAnimalPrice.AutoSize = true;
-            this.lblAnimalPrice.Location = new System.Drawing.Point(6, 173);
-            this.lblAnimalPrice.Name = "lblAnimalPrice";
-            this.lblAnimalPrice.Size = new System.Drawing.Size(34, 13);
-            this.lblAnimalPrice.TabIndex = 16;
-            this.lblAnimalPrice.Text = "Price:";
-            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 462);
+            this.ClientSize = new System.Drawing.Size(782, 462);
             this.Controls.Add(this.gbReserveAnimal);
             this.Controls.Add(this.gbSellAnimal);
             this.Controls.Add(this.gbAddAnimal);

@@ -58,7 +58,7 @@ namespace AnimalShelter
         /// 
         public override string ToString()
         {
-            if (BadHabits == null)
+            if (BadHabits == null || BadHabits == " ")
             {
                 return base.ToString() + ", badhabits: " + "none";
             }

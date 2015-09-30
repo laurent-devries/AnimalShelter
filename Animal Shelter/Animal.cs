@@ -148,15 +148,7 @@ namespace AnimalShelter
 
         public int CompareTo(Animal other)
         {
-            if (this.Price < other.Price)
-            {
-                return -1;
-            }
-            else if (this.Price > other.Price)
-            {
-                return 1;
-            }
-            return 0;
+            return this.chipRegistrationNumber.CompareTo(other.chipRegistrationNumber);
         }
 
     }

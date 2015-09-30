@@ -80,12 +80,12 @@ namespace AnimalShelter
 
         public void reloadLists()
         {
-            lbSellAnimal.Items.Clear();
-            lbNotReservedAnimals.Items.Clear();
-            lbReservedAnimals.Items.Clear();
-
             //sorteer op prijs
             administration.Animallist.Sort();
+
+            lbSellAnimal.Items.Clear();
+            lbNotReservedAnimals.Items.Clear();
+            lbReservedAnimals.Items.Clear();            
             
             foreach(Animal a in administration.Animallist)
             {
