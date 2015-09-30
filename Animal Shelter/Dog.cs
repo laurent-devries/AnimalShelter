@@ -65,7 +65,7 @@ namespace AnimalShelter
         {
             get
             {
-                if ((int)Convert.ToInt32(ChipRegistrationNumber) < 50000)
+                if (Convert.ToInt32(ChipRegistrationNumber) < 50000)
                 {
                     return 200;
                 }  

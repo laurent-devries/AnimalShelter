@@ -9,7 +9,7 @@ namespace AnimalShelter
     /// <summary>
     /// Class representing an animal in the shelter.
     /// </summary>
-    public abstract class Animal : IPriceable
+    public abstract class Animal : IPriceable, IComparable<Animal>
     {
         /// <summary>
         /// The maximum length of the chip registration number.
@@ -57,6 +57,9 @@ namespace AnimalShelter
         }
 
         public abstract int Price { get; }
+
+        
+      
 
         /// <summary>
         /// Creates an animal.
@@ -142,5 +145,19 @@ namespace AnimalShelter
 
             return info;
         }
+
+        public int CompareTo(Animal other)
+        {
+            if (this.Price < other.Price)
+            {
+                return -1;
+            }
+            else if (this.Price > other.Price)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
     }
 }

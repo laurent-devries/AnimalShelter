@@ -83,9 +83,13 @@ namespace AnimalShelter
             lbSellAnimal.Items.Clear();
             lbNotReservedAnimals.Items.Clear();
             lbReservedAnimals.Items.Clear();
+
+            //sorteer op prijs
+            administration.Animallist.Sort();
             
             foreach(Animal a in administration.Animallist)
             {
+                
                 if (a.IsReserved)
                 {
                     lbReservedAnimals.Items.Add(a);
@@ -95,7 +99,7 @@ namespace AnimalShelter
                     lbNotReservedAnimals.Items.Add(a);
                 }
                 lbSellAnimal.Items.Add(a);
-            }
+            }            
         }
 
         private void btnDeleteAnimal_Click(object sender, EventArgs e)
