@@ -37,10 +37,7 @@ namespace AnimalShelter
         {
             BadHabits = badHabits;
             price = 60 - BadHabits.Length;
-            if (price < 20)
-            {
-                price = 20;
-            }
+            
         }
 
 
@@ -72,6 +69,10 @@ namespace AnimalShelter
         {
             get
             {
+                if (price < 20)
+                {
+                    return 20;
+                }
                 return price;
             }
         }

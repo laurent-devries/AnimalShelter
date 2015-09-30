@@ -9,7 +9,7 @@ namespace AnimalShelter
     {
         // Backing field for property, see actual properties for their description.
         private SimpleDate lastWalkDate;
-        private int price;
+
 
         /// <summary>
         /// The date of the last walk of the dog. Contains null if unknown.
@@ -35,17 +35,7 @@ namespace AnimalShelter
             string name, SimpleDate lastWalkDate) : base(chipRegistrationNumber, dateOfBirth, name)
         {
             LastWalkDate = lastWalkDate;
-
-            int chipRegNumber = Convert.ToInt32(chipRegistrationNumber);
-            if (chipRegNumber < 50000)
-            {
-                price = 200;
-            }
-            else
-            {
-                price = 350;
-            }         
-            
+            int chipRegNumber = Convert.ToInt32(chipRegistrationNumber); 
         }
 
         /// <summary>
@@ -75,7 +65,12 @@ namespace AnimalShelter
         {
             get
             {
-                return price;
+                if ((int)Convert.ToInt32(ChipRegistrationNumber) < 50000)
+                {
+                    return 200;
+                }  
+                return 350;
+                
             }
         }
     }
