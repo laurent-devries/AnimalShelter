@@ -189,7 +189,7 @@
             this.gbSellAnimal.Controls.Add(this.lbSellAnimal);
             this.gbSellAnimal.Location = new System.Drawing.Point(307, 12);
             this.gbSellAnimal.Name = "gbSellAnimal";
-            this.gbSellAnimal.Size = new System.Drawing.Size(452, 202);
+            this.gbSellAnimal.Size = new System.Drawing.Size(216, 202);
             this.gbSellAnimal.TabIndex = 18;
             this.gbSellAnimal.TabStop = false;
             this.gbSellAnimal.Text = "Sell Animal";
@@ -218,7 +218,7 @@
             this.lbSellAnimal.FormattingEnabled = true;
             this.lbSellAnimal.Location = new System.Drawing.Point(6, 28);
             this.lbSellAnimal.Name = "lbSellAnimal";
-            this.lbSellAnimal.Size = new System.Drawing.Size(440, 134);
+            this.lbSellAnimal.Size = new System.Drawing.Size(181, 134);
             this.lbSellAnimal.TabIndex = 2;
             this.lbSellAnimal.SelectedIndexChanged += new System.EventHandler(this.lbSellAnimal_SelectedIndexChanged);
             // 
