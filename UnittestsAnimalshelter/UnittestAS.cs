@@ -44,9 +44,10 @@ namespace UnittestsAnimalshelter
             SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
             Administration administration = new Administration();
             Cat cat = new Cat("12345", simpleDate, "testAnimal", "badHabits");
-
-            administration.Add(cat);
-            Assert.AreEqual(cat, administration.Animallist[0]);
+            //Add Original Cat
+            Assert.IsTrue(administration.Add(cat));
+            //Add cat that with the same chipnumber
+            Assert.IsFalse(administration.Add(cat));
         }
 
         [TestMethod]
@@ -56,7 +57,88 @@ namespace UnittestsAnimalshelter
             Administration administration = new Administration();
             Cat cat = new Cat("12345", simpleDate, "testAnimal", "badHabits");
             administration.Add(cat);
+            //Remove excisting animal
             Assert.IsTrue(administration.RemoveAnimal("12345"));
+
+            //Remove Animal that doesn't Excist
+            Assert.IsFalse(administration.RemoveAnimal("00000"));
         }
+
+        [TestMethod]
+        public void FindAnimal()
+        {
+            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
+            Administration administration = new Administration();
+            Cat cat = new Cat("12345", simpleDate, "testAnimal", "badHabits");
+            administration.Add(cat);
+
+            //Find excisting Animal
+            Assert.AreEqual(cat, administration.FindAnimal("12345"));
+
+            //Find Animal that does not exist.
+            Assert.IsNull(administration.FindAnimal("00000"));
+        }
+
+        [TestMethod]
+        public void AnimalPropsTest()
+        {
+            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
+            
+            //if chip is longer than 5 digits, just add the first 5;
+            Cat cat = new Cat("123456", simpleDate, "testAnimal", "badHabits");
+            Assert.AreEqual("12345", cat.ChipRegistrationNumber, "Chip failed when more than 5 digits are inserted");
+
+            //if chip is shorter than 5, add zeros before the chip until the chip has 5 digits
+            Cat cat2 = new Cat("1234", simpleDate, "testAnimal", "badHabits");
+            Assert.AreEqual("01234", cat2.ChipRegistrationNumber, "Chip failed when less than 5 digits were inserted");
+
+            //Check rest of properties;
+            Assert.AreEqual(simpleDate, cat.DateOfBirth, "Incorrect DateOfBirth");
+            Assert.AreEqual("testAnimal", cat.Name, "Incorrect Name");            
+        }
+
+        [TestMethod]
+        public void AnimalReserving()
+        {
+            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
+            Cat cat = new Cat("123456", simpleDate, "testAnimal", "badHabits");
+
+            Assert.IsFalse(cat.IsReserved);
+            cat.IsReserved = true;
+            Assert.IsTrue(cat.IsReserved);
+        }
+
+        [TestMethod]
+        public void AnimalComparing()
+        {
+            Administration administration = new Administration();
+            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
+            Cat cat = new Cat("99999", simpleDate, "testAnimal", "badHabits");
+            Cat cat2 = new Cat("00000", simpleDate, "testAnimal", "badHabits");
+            administration.Add(cat);
+            administration.Add(cat2);
+
+            administration.Animallist.Sort();
+
+            Assert.AreEqual(cat2, administration.Animallist[0]);
+        }
+        [TestMethod]
+        public void SimpleDatePropTest()
+        {
+            SimpleDate simpledate = new SimpleDate(06, 11, 1996);
+            //Standard property testing
+            Assert.AreEqual(06, simpledate.Day);
+            Assert.AreEqual(11, simpledate.Month);
+            Assert.AreEqual(1996, simpledate.Year);
+        }
+
+        [TestMethod]
+        public void SimpleDateDaysDifference()
+        {
+            SimpleDate simpledate = new SimpleDate(06, 11, 1996);
+            SimpleDate simpledate2 = new SimpleDate(20, 11, 1996);
+            Assert.AreEqual(14, simpledate.DaysDifference(simpledate2));
+        }
+
     }
 }
