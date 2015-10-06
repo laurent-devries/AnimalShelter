@@ -295,7 +295,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 462);
+            this.ClientSize = new System.Drawing.Size(553, 462);
             this.Controls.Add(this.gbReserveAnimal);
             this.Controls.Add(this.gbSellAnimal);
             this.Controls.Add(this.gbAddAnimal);
