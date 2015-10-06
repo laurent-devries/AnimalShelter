@@ -25,9 +25,38 @@ namespace UnittestsAnimalshelter
         }
 
         [TestMethod]
-        public void Test()
+        public void TestAddCat()
         {
-            
+            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
+
+            //60-badhabits.length = price of cat
+            Cat cat = new Cat("12345", simpleDate, "testcat", "0123456789");
+            Assert.AreEqual((60 - 10), cat.Price, "Incorrect Price");
+
+            //badhabits <= 20 : price = 20
+            Cat cat2 = new Cat("12345", simpleDate, "testcat", "12345678901234567890123456789012345678901");
+            Assert.AreEqual(20, cat2.Price);
+        }
+
+        [TestMethod]
+        public void AddAnimalToAdministration()
+        {
+            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
+            Administration administration = new Administration();
+            Cat cat = new Cat("12345", simpleDate, "testAnimal", "badHabits");
+
+            administration.Add(cat);
+            Assert.AreEqual(cat, administration.Animallist[0]);
+        }
+
+        [TestMethod]
+        public void RemoveAnimalFromAdministration()
+        {
+            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
+            Administration administration = new Administration();
+            Cat cat = new Cat("12345", simpleDate, "testAnimal", "badHabits");
+            administration.Add(cat);
+            Assert.IsTrue(administration.RemoveAnimal("12345"));
         }
     }
 }
