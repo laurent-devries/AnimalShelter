@@ -7,43 +7,47 @@ namespace UnittestsAnimalshelter
     [TestClass]
     public class UnittestAS
     {
+        private SimpleDate simpleDate;
+        private Administration administration;
+        private SimpleDate lastWalk;
+        private Dog dog;
+        private Cat cat;
+        [TestInitialize]
+        public void Initialize()
+        {
+            simpleDate = new SimpleDate(06, 11, 1996);
+            lastWalk = new SimpleDate(06, 11, 1996);
+            administration = new Administration();
+            dog = new Dog("12345", simpleDate, "testdog", lastWalk);
+            cat = new Cat("12345", simpleDate, "testcat", "0123456789");
+        }
+
         [TestMethod]
         public void TestAddDog()
-        {
-            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);  
-            SimpleDate lastWalk = new SimpleDate(06, 11, 1996);
-
-            Dog dog = new Dog("12345", simpleDate, "testdog", lastWalk);
+        {                    
             Assert.AreEqual(lastWalk, dog.LastWalkDate, "Incorrect Last Walk Date");
-
             //Chipnumber of dog < 50000
             Assert.AreEqual(200, dog.Price, "Incorrect Price with chipnumber < 50000");
 
             //Chipnumber of dog >= 50000
-            Dog dog2 = new Dog("52345", simpleDate, "testdog", lastWalk);
-            Assert.AreEqual(350, dog2.Price, "Incorrect Price with chipnumber >= 50000");
+            dog = new Dog("52345", simpleDate, "testdog", lastWalk);
+            Assert.AreEqual(350, dog.Price, "Incorrect Price with chipnumber >= 50000");
         }
 
         [TestMethod]
         public void TestAddCat()
         {
-            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
-
-            //60-badhabits.length = price of cat
-            Cat cat = new Cat("12345", simpleDate, "testcat", "0123456789");
+            //60-badhabits.length = price of cat            
             Assert.AreEqual((60 - 10), cat.Price, "Incorrect Price");
 
             //badhabits <= 20 : price = 20
-            Cat cat2 = new Cat("12345", simpleDate, "testcat", "12345678901234567890123456789012345678901");
-            Assert.AreEqual(20, cat2.Price);
+            cat = new Cat("12345", simpleDate, "testcat", "12345678901234567890123456789012345678901");
+            Assert.AreEqual(20, cat.Price);
         }
 
         [TestMethod]
         public void AddAnimalToAdministration()
         {
-            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
-            Administration administration = new Administration();
-            Cat cat = new Cat("12345", simpleDate, "testAnimal", "badHabits");
             //Add Original Cat
             Assert.IsTrue(administration.Add(cat));
             //Add cat that with the same chipnumber
@@ -53,9 +57,6 @@ namespace UnittestsAnimalshelter
         [TestMethod]
         public void RemoveAnimalFromAdministration()
         {
-            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
-            Administration administration = new Administration();
-            Cat cat = new Cat("12345", simpleDate, "testAnimal", "badHabits");
             administration.Add(cat);
             //Remove excisting animal
             Assert.IsTrue(administration.RemoveAnimal("12345"));
@@ -67,9 +68,6 @@ namespace UnittestsAnimalshelter
         [TestMethod]
         public void FindAnimal()
         {
-            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
-            Administration administration = new Administration();
-            Cat cat = new Cat("12345", simpleDate, "testAnimal", "badHabits");
             administration.Add(cat);
 
             //Find excisting Animal
@@ -81,28 +79,37 @@ namespace UnittestsAnimalshelter
 
         [TestMethod]
         public void AnimalPropsTest()
-        {
-            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
-            
+        {            
             //if chip is longer than 5 digits, just add the first 5;
-            Cat cat = new Cat("123456", simpleDate, "testAnimal", "badHabits");
+            cat = new Cat("123456", simpleDate, "testAnimal", "badHabits");
             Assert.AreEqual("12345", cat.ChipRegistrationNumber, "Chip failed when more than 5 digits are inserted");
 
             //if chip is shorter than 5, add zeros before the chip until the chip has 5 digits
-            Cat cat2 = new Cat("1234", simpleDate, "testAnimal", "badHabits");
-            Assert.AreEqual("01234", cat2.ChipRegistrationNumber, "Chip failed when less than 5 digits were inserted");
+            cat = new Cat("1234", simpleDate, "testAnimal", "badHabits");
+            Assert.AreEqual("01234", cat.ChipRegistrationNumber, "Chip failed when less than 5 digits were inserted");
 
             //Check rest of properties;
             Assert.AreEqual(simpleDate, cat.DateOfBirth, "Incorrect DateOfBirth");
-            Assert.AreEqual("testAnimal", cat.Name, "Incorrect Name");            
+            Assert.AreEqual("testAnimal", cat.Name, "Incorrect Name");
+            Assert.AreEqual("01234, 06-11-1996, testAnimal, not reserved, badhabits: badHabits", cat.ToString());
+
+            //test null birthdate for cat
+            cat = new Cat("1234", null, "testAnimal", "badHabits");
+            Assert.AreEqual("01234, 00-00-0000, testAnimal, not reserved, badhabits: badHabits", cat.ToString());
+            //test "" badhabits
+            cat = new Cat("1234", null, "testAnimal", "");
+            Assert.AreEqual("01234, 00-00-0000, testAnimal, not reserved, badhabits: none", cat.ToString());
+
+            //special dog test
+            Assert.AreEqual("12345, 06-11-1996, testdog, not reserved, lastWalkDate: 06-11-1996", dog.ToString());
+            dog = new Dog("12345", null, null, null);
+            dog.IsReserved = true;
+            Assert.AreEqual("12345, 00-00-0000, noname, reserved, lastWalkDate: 00-00-0000", dog.ToString());
         }
 
         [TestMethod]
         public void AnimalReserving()
         {
-            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
-            Cat cat = new Cat("123456", simpleDate, "testAnimal", "badHabits");
-
             Assert.IsFalse(cat.IsReserved);
             cat.IsReserved = true;
             Assert.IsTrue(cat.IsReserved);
@@ -111,9 +118,7 @@ namespace UnittestsAnimalshelter
         [TestMethod]
         public void AnimalComparing()
         {
-            Administration administration = new Administration();
-            SimpleDate simpleDate = new SimpleDate(06, 11, 1996);
-            Cat cat = new Cat("99999", simpleDate, "testAnimal", "badHabits");
+            cat = new Cat("99999", simpleDate, "testAnimal", "badHabits");
             Cat cat2 = new Cat("00000", simpleDate, "testAnimal", "badHabits");
             administration.Add(cat);
             administration.Add(cat2);
@@ -125,19 +130,18 @@ namespace UnittestsAnimalshelter
         [TestMethod]
         public void SimpleDatePropTest()
         {
-            SimpleDate simpledate = new SimpleDate(06, 11, 1996);
             //Standard property testing
-            Assert.AreEqual(06, simpledate.Day);
-            Assert.AreEqual(11, simpledate.Month);
-            Assert.AreEqual(1996, simpledate.Year);
+            Assert.AreEqual(06, simpleDate.Day);
+            Assert.AreEqual(11, simpleDate.Month);
+            Assert.AreEqual(1996, simpleDate.Year);
         }
 
         [TestMethod]
         public void SimpleDateDaysDifference()
         {
-            SimpleDate simpledate = new SimpleDate(06, 11, 1996);
-            SimpleDate simpledate2 = new SimpleDate(20, 11, 1996);
-            Assert.AreEqual(14, simpledate.DaysDifference(simpledate2));
+            //Check if difference between dates is correct.
+            SimpleDate simpleDate2 = new SimpleDate(20, 11, 1996);
+            Assert.AreEqual(14, simpleDate.DaysDifference(simpleDate2));
         }
 
     }
