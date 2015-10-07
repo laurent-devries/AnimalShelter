@@ -35,7 +35,6 @@ namespace AnimalShelter
             string name, SimpleDate lastWalkDate) : base(chipRegistrationNumber, dateOfBirth, name)
         {
             LastWalkDate = lastWalkDate;
-            int chipRegNumber = Convert.ToInt32(chipRegistrationNumber); 
         }
 
         /// <summary>
@@ -60,7 +59,7 @@ namespace AnimalShelter
             }
             return base.ToString() + ", lastWalkDate: " + LastWalkDate.ToString();
         }
-
+        
         public override int Price
         {
             get
