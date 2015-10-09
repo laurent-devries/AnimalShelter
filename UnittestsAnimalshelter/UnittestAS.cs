@@ -26,6 +26,7 @@ namespace UnittestsAnimalshelter
         public void TestAddDog()
         {                    
             Assert.AreEqual(lastWalk, dog.LastWalkDate, "Incorrect Last Walk Date");
+            
             //Chipnumber of dog < 50000
             Assert.AreEqual(200, dog.Price, "Incorrect Price with chipnumber < 50000");
 
@@ -39,6 +40,7 @@ namespace UnittestsAnimalshelter
         {
             //60-badhabits.length = price of cat            
             Assert.AreEqual((60 - 10), cat.Price, "Incorrect Price");
+            
 
             //badhabits <= 20 : price = 20
             cat = new Cat("12345", simpleDate, "testcat", "12345678901234567890123456789012345678901");
