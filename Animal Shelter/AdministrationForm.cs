@@ -6,18 +6,20 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using System.IO;
 namespace AnimalShelter
 {
     public partial class AdministrationForm : Form
     {
         Administration administration = new Administration();
+
         public AdministrationForm()
         {
             InitializeComponent();
             animalTypeComboBox.SelectedIndex = 0;
 
-            loadPremades();           
+            loadPremades();
+            administration.loadAnimals();
         }
 
         /// <summary>
@@ -85,20 +87,21 @@ namespace AnimalShelter
 
             lbSellAnimal.Items.Clear();
             lbNotReservedAnimals.Items.Clear();
-            lbReservedAnimals.Items.Clear();            
+            lbReservedAnimals.Items.Clear();
+            lbAllAnimals.Items.Clear();
             
             foreach(Animal a in administration.Animallist)
-            {
-                
+            {                
                 if (a.IsReserved)
                 {
-                    lbReservedAnimals.Items.Add(a);
+                    lbReservedAnimals.Items.Add(a);                    
                 }
                 else
                 {
                     lbNotReservedAnimals.Items.Add(a);
                 }
                 lbSellAnimal.Items.Add(a);
+                lbAllAnimals.Items.Add(a);
             }            
         }
 
@@ -159,7 +162,6 @@ namespace AnimalShelter
 
         public void loadPremades()
         {
-
             SimpleDate premadeBirth1 = new SimpleDate(06, 11, 1996);
             SimpleDate premadeLWD1 = new SimpleDate(22, 09, 2015);
             SimpleDate premadeBirth2 = new SimpleDate(22, 08, 2002);
@@ -178,7 +180,21 @@ namespace AnimalShelter
             administration.Add(new Cat("00008", premadeBirth2, "Luigi", "Destroys your furniture"));
 
             reloadLists();
+        }
 
+        
+
+       
+        private void btnSaveAll_Click(object sender, EventArgs e)
+        {
+            if (administration.saveAnimals())
+            {
+                MessageBox.Show("Animals.txt has been saved on your desktop");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong");
+            }
         }
     }
 }

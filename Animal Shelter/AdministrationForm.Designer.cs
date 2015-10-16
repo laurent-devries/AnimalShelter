@@ -52,9 +52,13 @@
             this.lbReservedAnimals = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.gbSaveAnimals = new System.Windows.Forms.GroupBox();
+            this.lbAllAnimals = new System.Windows.Forms.ListBox();
+            this.btnSaveAll = new System.Windows.Forms.Button();
             this.gbAddAnimal.SuspendLayout();
             this.gbSellAnimal.SuspendLayout();
             this.gbReserveAnimal.SuspendLayout();
+            this.gbSaveAnimals.SuspendLayout();
             this.SuspendLayout();
             // 
             // animalTypeComboBox
@@ -291,11 +295,41 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Reserved";
             // 
+            // gbSaveAnimals
+            // 
+            this.gbSaveAnimals.Controls.Add(this.lbAllAnimals);
+            this.gbSaveAnimals.Controls.Add(this.btnSaveAll);
+            this.gbSaveAnimals.Location = new System.Drawing.Point(529, 12);
+            this.gbSaveAnimals.Name = "gbSaveAnimals";
+            this.gbSaveAnimals.Size = new System.Drawing.Size(216, 438);
+            this.gbSaveAnimals.TabIndex = 19;
+            this.gbSaveAnimals.TabStop = false;
+            this.gbSaveAnimals.Text = "Save Animals";
+            // 
+            // lbAllAnimals
+            // 
+            this.lbAllAnimals.FormattingEnabled = true;
+            this.lbAllAnimals.Location = new System.Drawing.Point(10, 27);
+            this.lbAllAnimals.Name = "lbAllAnimals";
+            this.lbAllAnimals.Size = new System.Drawing.Size(200, 368);
+            this.lbAllAnimals.TabIndex = 17;
+            // 
+            // btnSaveAll
+            // 
+            this.btnSaveAll.Location = new System.Drawing.Point(146, 404);
+            this.btnSaveAll.Name = "btnSaveAll";
+            this.btnSaveAll.Size = new System.Drawing.Size(64, 23);
+            this.btnSaveAll.TabIndex = 15;
+            this.btnSaveAll.Text = "Save All";
+            this.btnSaveAll.UseVisualStyleBackColor = true;
+            this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 462);
+            this.ClientSize = new System.Drawing.Size(804, 462);
+            this.Controls.Add(this.gbSaveAnimals);
             this.Controls.Add(this.gbReserveAnimal);
             this.Controls.Add(this.gbSellAnimal);
             this.Controls.Add(this.gbAddAnimal);
@@ -307,6 +341,7 @@
             this.gbSellAnimal.PerformLayout();
             this.gbReserveAnimal.ResumeLayout(false);
             this.gbReserveAnimal.PerformLayout();
+            this.gbSaveAnimals.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -337,6 +372,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblAnimalPrice;
+        private System.Windows.Forms.GroupBox gbSaveAnimals;
+        private System.Windows.Forms.ListBox lbAllAnimals;
+        private System.Windows.Forms.Button btnSaveAll;
     }
 }
 
